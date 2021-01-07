@@ -22,8 +22,9 @@ module.exports ={
                     $maxDistance: 10000,
                 },               
             }
-        });  
-        console.log(devs);   
+        }); 
+       // const {devs} =  response;
+        console.log({devs});   
         //Buscar todos os devs num raio de 10km
         // Filtrar por tecnologias
 
