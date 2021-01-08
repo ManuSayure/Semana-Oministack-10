@@ -4,8 +4,12 @@
  const password = require('../password.js') ;
  const routes = require('./routes');
  const cors = require('cors');
+ const http = require('http');
+ const {setupWebsocket} = require('./websocket');
 
  const app = express(); 
+ const server = http.Server(app);
+ setupWebsocket(server);
 
  //Mongo DB Atlas
  mongoose.connect('mongodb+srv://admin:'+password+'@cluster0.e0g01.mongodb.net/db?retryWrites=true&w=majority', {   
@@ -19,6 +23,6 @@
  app.use(routes);
  
  
- app.listen(port, function () {
+ server.listen(port, function () {
     console.log(`app listening on port http://localhost:${port}`)
   });
