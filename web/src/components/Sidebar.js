@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import '../assets/css/Sidebar.css';
 import api from '../services/api'; 
 
+import {connect} from 'react-redux';
+import { actions } from 'react-redux-form';
+import { postDev} from '../redux/ActionCreators';
+
 const Sidebar = (props) => {
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
     const [github_username, setGithub_username] = useState('');
     const [techs, setTechs] = useState('');
-   
-    
 
 
      useEffect(() => {
@@ -28,7 +30,7 @@ const Sidebar = (props) => {
      }, [])
 
      
-     async function handleSubmit(e){
+    /* async function handleSubmit(e){
          e.preventDefault();
          const response = await api.post('/devs', {
             github_username,
@@ -41,11 +43,21 @@ const Sidebar = (props) => {
          props.handleDevs(response.data);
          console.log(response.data);
          
+     }*/
+     async function submit(){
+        await postDev( 
+            github_username,
+            techs,
+            latitude,
+            longitude   );
+
+        setGithub_username('');
+        setTechs(''); 
      }
     return(
         <aside>
         <strong>Cadastrar</strong>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submit}>
             <div  className='input-block'>
                 <label>Usuário Github</label>
                 <input 

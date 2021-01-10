@@ -5,9 +5,14 @@ import Sidebar from './components/Sidebar';
 import Main from './components/Main';
 import api from './services/api';
 
+import {Provider} from "react-redux";
+import {ConfigureStore} from '../src/redux/ConfigureStore';
+
 
 function App() { 
+
   const[devs, setDevs] = useState([]);
+
     useEffect(() => {
         async function loadDevs(){
             const response = await api.get('/devs');
@@ -21,12 +26,12 @@ function App() {
     setDevs([...devs, newDev]);
   }
   return (
-    <div className="App" id="app"> 
-
-     <Sidebar handleDevs={(newDev ) => handleDevs(newDev)}/>
-     <Main devs={devs}/>
-
-    </div>
+    <Provider store= {ConfigureStore()}>
+        <div className="App" id="app"> 
+      
+            
+        </div>
+    </Provider>
   );
 }; 
 export default App;

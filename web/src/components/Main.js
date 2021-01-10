@@ -1,37 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../assets/css/Main.css';
+import  RenderDev from "../components/RenderDev";
 
-
- const Main = ({devs}) => { 
-    
-     
+ const Main = ({devs, errMess, isLoading}) => { 
+        
     return (
         <main>
             <ul>
-                {
-                    devs.map(dev => {
+                {   devs.map(dev => {
                         return (
-                            <li  key= {dev._id} className="dev-item">
-                               <header>
-                                    <img src={ dev.avatar_url } alt={dev.name}/>
-                                    <div className="user-info">
-                                            <strong>{dev.name}</strong>
-                                            <span> {dev.techs.join(', ')} </span>
-                                    </div>
-                                </header>
-                                <p> {dev.bio}</p>
-                                <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no Github</a>
-                            </li>
-
-                        )
-                    })
-                
-                
-                }
-                
-               
+                            <RenderDev 
+                            dev = {dev} 
+                            errMess= {errMess} 
+                            isLoading = {isLoading} 
+                            /> )
+                    })                
+                }               
             </ul>
-
         </main>
     )     
 
