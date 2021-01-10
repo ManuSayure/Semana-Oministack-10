@@ -3,19 +3,19 @@ import '../assets/css/Main.css';
 import  RenderDev from "../components/RenderDev";
 
  const Main = ({devs, errMess, isLoading}) => { 
+     console.log({devs, errMess, isLoading});
         
     return (
         <main>
             <ul>
-                {   devs.map(dev => {
-                        return (
-                            <RenderDev 
-                            dev = {dev} 
-                            errMess= {errMess} 
-                            isLoading = {isLoading} 
-                            /> )
-                    })                
-                }               
+                
+                    <RenderDev 
+                    devs = {devs} 
+                    errMess= {errMess} 
+                    isLoading = {isLoading} 
+                    />               
+                             
+                             
             </ul>
         </main>
     )     

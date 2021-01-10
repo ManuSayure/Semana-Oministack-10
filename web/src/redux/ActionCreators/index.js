@@ -1,5 +1,7 @@
 import * as ActionTypes from '../ActionTypes/index';
 import api from '../../services/api'; 
+import fetch from 'cross-fetch';
+import { baseUrl } from "../../services/baseUrl";
 
 /** Adiciona um novo dev pelo form */
 export const addDev = (dev) => ({
@@ -13,11 +15,15 @@ export const addDevs = (devs) => ({
   payload: devs
 });
 /** Chama api com metodo GET */
-export  const getDevs = async () => (dispatch) => {
+
+async function get(){
+  
+}
+export  const getDevs = () => (dispatch) => {
 
   dispatch(devsLoading(true));
 
-  return api.get('/devs')
+  return  fetch(baseUrl + '/devs')
   .then(response => {
       if (response.ok) {
         console.log(response);
@@ -35,6 +41,7 @@ export  const getDevs = async () => (dispatch) => {
   .then(response => response.json())
   .then(devs => dispatch(addDevs(devs)))
   .catch(error => dispatch(devsFailed(error.message)));
+  
 }
 
 /** Devs ainda não carregados da api */
@@ -49,7 +56,7 @@ export const devsFailed = (errmess) => ({
 });
 
 /**Chama api com metodo POST */
-export   const postDev = async (github_username, latitude, longitude, techs) => (dispatch) => {
+export  const postDev = async (github_username, latitude, longitude, techs) => (dispatch) => {
 
   const newDev = {
       github_username: github_username,
@@ -59,7 +66,7 @@ export   const postDev = async (github_username, latitude, longitude, techs) => 
   };
  
   
-  return  api.post('/devs', {
+  return api.post('/devs', {
     github_username,
     techs,
     latitude,

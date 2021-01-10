@@ -8,10 +8,7 @@ import logger from 'redux-logger';
 export const ConfigureStore = () => {
     const store = createStore( combineReducers(
         {
-            dishes: Devs,
-           // ...createForms({
-               // feedback: InitialFeedback
-           // })
+            devs: Devs,
         }),applyMiddleware(thunk, logger)
         )
     

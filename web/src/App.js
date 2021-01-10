@@ -7,29 +7,29 @@ import api from './services/api';
 
 import {Provider} from "react-redux";
 import {ConfigureStore} from '../src/redux/ConfigureStore';
+import Setup from './components/Setup';
 
 
 function App() { 
 
-  const[devs, setDevs] = useState([]);
+  //const[devs, setDevs] = useState([]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         async function loadDevs(){
             const response = await api.get('/devs');
             setDevs(response.data);
-            console.log(response);
+           // console.log(response);
         } loadDevs();
 
     }, [ ]) ;
 
   const handleDevs = (newDev) =>{
     setDevs([...devs, newDev]);
-  }
+  }*/
   return (
     <Provider store= {ConfigureStore()}>
-        <div className="App" id="app"> 
-      
-            
+        <div className="App" id="app">       
+           <Setup/> 
         </div>
     </Provider>
   );
